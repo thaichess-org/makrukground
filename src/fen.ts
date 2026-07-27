@@ -5,6 +5,7 @@ export const initial: cg.FEN = 'rnsmksnr/8/pppppppp/8/8/PPPPPPPP/8/RNSKMSNR'
 
 const roles: { [letter: string]: cg.Role } = {
   p: 'pawn',
+  'm~':'promotedpawn',
   r: 'rook',
   n: 'knight',
   s: 'bishop',
@@ -14,6 +15,7 @@ const roles: { [letter: string]: cg.Role } = {
 
 const letters = {
   pawn: 'p',
+  promotedpawn: 'm~',
   rook: 'r',
   knight: 'n',
   bishop: 's',
@@ -29,7 +31,6 @@ export function read(fen: cg.FEN): cg.Pieces {
   for (const c of fen) {
     switch (c) {
       case ' ':
-      case '[':
         return pieces
       case '/':
         --row

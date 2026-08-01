@@ -49,18 +49,6 @@ export interface HeadlessState {
       unset?: () => void // called after the premove has been unset
     }
   }
-  predroppable: {
-    enabled: boolean // allow predrops for color that can not move
-    current?: {
-      // current saved predrop {role: 'knight'; key: 'e4'}
-      role: cg.Role
-      key: cg.Key
-    }
-    events: {
-      set?: (role: cg.Role, key: cg.Key) => void // called after the predrop has been set
-      unset?: () => void // called after the predrop has been unset
-    }
-  }
   draggable: {
     enabled: boolean // allow moves & premoves to use drag'n drop
     distance: number // minimum distance to initiate a drag; in pixels
@@ -130,10 +118,6 @@ export function defaults(): HeadlessState {
     premovable: {
       enabled: true,
       showDests: true,
-      events: {}
-    },
-    predroppable: {
-      enabled: false,
       events: {}
     },
     draggable: {

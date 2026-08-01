@@ -38,7 +38,6 @@ export function start(s: State, e: cg.MouchEvent): void {
   )
     e.preventDefault()
   const hadPremove = !!s.premovable.current
-  const hadPredrop = !!s.predroppable.current
   s.stats.ctrlKey = e.ctrlKey
   if (s.selected && board.canMove(s, s.selected, orig)) {
     anim(state => board.selectSquare(state, orig), s)
@@ -71,7 +70,6 @@ export function start(s: State, e: cg.MouchEvent): void {
     processDrag(s)
   } else {
     if (hadPremove) board.unsetPremove(s)
-    if (hadPredrop) board.unsetPredrop(s)
   }
   s.dom.redraw()
 }
@@ -162,7 +160,6 @@ export function end(s: State, e: cg.MouchEvent): void {
     return
   }
   board.unsetPremove(s)
-  board.unsetPredrop(s)
   // touchend has no position; so use the last touchmove position instead
   const eventPos = util.eventPosition(e) || cur.pos
   const dest = board.getKeyAtDomPos(eventPos, board.whitePov(s), s.dom.bounds())

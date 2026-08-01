@@ -1,11 +1,10 @@
 import { pos2key, invRanks } from './util.js'
 import * as cg from './types.js'
 
-export const initial: cg.FEN = 'rnsmksnr/8/pppppppp/8/8/PPPPPPPP/8/RNSKMSNR'
+export const initial: cg.FEN = 'rnsmksnr/8/pppppppp/8/8/PPPPPPPP/8/RNSKMSNR w 0 1'
 
 const roles: { [letter: string]: cg.Role } = {
   p: 'pawn',
-  'm~':'promotedpawn',
   r: 'rook',
   n: 'knight',
   s: 'bishop',
@@ -15,7 +14,7 @@ const roles: { [letter: string]: cg.Role } = {
 
 const letters = {
   pawn: 'p',
-  promotedpawn: 'm~',
+  promotedPawn: 'm~',
   rook: 'r',
   knight: 'n',
   bishop: 's',
@@ -39,7 +38,9 @@ export function read(fen: cg.FEN): cg.Pieces {
         break
       case '~': {
         const piece = pieces.get(pos2key([col - 1, row]))
-        if (piece) piece.promoted = true
+        // queen and promotedPawn use the same piece letter
+        // m/M, ~ will tell you if it's a promotedPawn or just a queen
+        if (piece && piece.role === 'queen') piece.role = 'promotedPawn'
         break
       }
       default: {
@@ -68,7 +69,6 @@ export function write(pieces: cg.Pieces): cg.FEN {
           if (piece) {
             let p = letters[piece.role]
             if (piece.color === 'white') p = p.toUpperCase()
-            if (piece.promoted) p += '~'
             return p
           } else return '1'
         })

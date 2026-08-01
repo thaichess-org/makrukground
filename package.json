@@ -1,6 +1,6 @@
 {
   "name": "makrukground",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "thaichess.org makruk ui",
   "type": "module",
   "module": "makrukground.js",

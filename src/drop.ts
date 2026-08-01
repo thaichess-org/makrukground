@@ -22,7 +22,6 @@ export function drop(s: State, e: cg.MouchEvent): void {
   if (!s.dropmode.active) return
 
   board.unsetPremove(s)
-  board.unsetPredrop(s)
 
   const piece = s.dropmode.piece
 

@@ -1,5 +1,5 @@
 export type Color = (typeof colors)[number]
-export type Role = 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn'| 'promotedpawn'
+export type Role = 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn' | 'promotedPawn'
 export type File = (typeof files)[number]
 export type Rank = (typeof ranks)[number]
 export type Key = 'a0' | `${File}${Rank}`
@@ -8,11 +8,6 @@ export type Pos = [number, number]
 export interface Piece {
   role: Role
   color: Color
-  promoted?: boolean
-}
-export interface Drop {
-  role: Role
-  key: Key
 }
 export type Pieces = Map<Key, Piece>
 export type PiecesDiff = Map<Key, Piece | undefined>
@@ -59,7 +54,6 @@ export interface MoveMetadata {
   ctrlKey?: boolean
   holdTime?: number
   captured?: Piece
-  predrop?: boolean
 }
 export interface SetPremoveMetadata {
   ctrlKey?: boolean

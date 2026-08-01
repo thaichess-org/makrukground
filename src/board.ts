@@ -16,7 +16,6 @@ export function reset(state: HeadlessState): void {
   state.lastMove = undefined
   unselect(state)
   unsetPremove(state)
-  unsetPredrop(state)
 }
 
 export function setPieces(state: HeadlessState, pieces: cg.PiecesDiff): void {
@@ -38,7 +37,6 @@ export function setCheck(state: HeadlessState, color: cg.Color | boolean): void 
 }
 
 function setPremove(state: HeadlessState, orig: cg.Key, dest: cg.Key, meta: cg.SetPremoveMetadata): void {
-  unsetPredrop(state)
   state.premovable.current = [orig, dest]
   callUserFunction(state.premovable.events.set, orig, dest, meta)
 }
@@ -47,20 +45,6 @@ export function unsetPremove(state: HeadlessState): void {
   if (state.premovable.current) {
     state.premovable.current = undefined
     callUserFunction(state.premovable.events.unset)
-  }
-}
-
-function setPredrop(state: HeadlessState, role: cg.Role, key: cg.Key): void {
-  unsetPremove(state)
-  state.predroppable.current = { role, key }
-  callUserFunction(state.predroppable.events.set, role, key)
-}
-
-export function unsetPredrop(state: HeadlessState): void {
-  const pd = state.predroppable
-  if (pd.current) {
-    pd.current = undefined
-    callUserFunction(pd.events.unset)
   }
 }
 
@@ -136,14 +120,10 @@ export function dropNewPiece(state: HeadlessState, orig: cg.Key, dest: cg.Key, f
     state.pieces.delete(orig)
     baseNewPiece(state, piece, dest, force)
     callUserFunction(state.movable.events.afterNewPiece, piece.role, dest, {
-      premove: false,
-      predrop: false
+      premove: false
     })
-  } else if (piece && canPredrop(state, orig, dest)) {
-    setPredrop(state, piece.role, dest)
   } else {
     unsetPremove(state)
-    unsetPredrop(state)
   }
   state.pieces.delete(orig)
   unselect(state)
@@ -210,19 +190,6 @@ function isPremovable(state: HeadlessState, orig: cg.Key): boolean {
 const canPremove = (state: HeadlessState, orig: cg.Key, dest: cg.Key): boolean =>
   orig !== dest && isPremovable(state, orig) && premove(state.pieces, orig).includes(dest)
 
-function canPredrop(state: HeadlessState, orig: cg.Key, dest: cg.Key): boolean {
-  const piece = state.pieces.get(orig)
-  const destPiece = state.pieces.get(dest)
-  return (
-    !!piece &&
-    (!destPiece || destPiece.color !== state.movable.color) &&
-    state.predroppable.enabled &&
-    (piece.role !== 'pawn' || (dest[1] !== '1' && dest[1] !== '8')) &&
-    state.movable.color === piece.color &&
-    state.turnColor !== piece.color
-  )
-}
-
 export function isDraggable(state: HeadlessState, orig: cg.Key): boolean {
   const piece = state.pieces.get(orig)
   return (
@@ -252,30 +219,8 @@ export function playPremove(state: HeadlessState): boolean {
   return success
 }
 
-export function playPredrop(state: HeadlessState, validate: (drop: cg.Drop) => boolean): boolean {
-  const drop = state.predroppable.current
-  let success = false
-  if (!drop) return false
-  if (validate(drop)) {
-    const piece = {
-      role: drop.role,
-      color: state.movable.color
-    } as cg.Piece
-    if (baseNewPiece(state, piece, drop.key)) {
-      callUserFunction(state.movable.events.afterNewPiece, drop.role, drop.key, {
-        premove: false,
-        predrop: true
-      })
-      success = true
-    }
-  }
-  unsetPredrop(state)
-  return success
-}
-
 export function cancelMove(state: HeadlessState): void {
   unsetPremove(state)
-  unsetPredrop(state)
   unselect(state)
 }
 

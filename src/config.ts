@@ -45,13 +45,6 @@ export interface Config {
       unset?: () => void // called after the premove has been unset
     }
   }
-  predroppable?: {
-    enabled?: boolean // allow predrops for color that can not move
-    events?: {
-      set?: (role: cg.Role, key: cg.Key) => void // called after the predrop has been set
-      unset?: () => void // called after the predrop has been unset
-    }
-  }
   draggable?: {
     enabled?: boolean // allow moves & premoves to use drag'n drop
     distance?: number // minimum distance to initiate a drag; in pixels
@@ -119,22 +112,6 @@ export function configure(state: HeadlessState, config: Config): void {
   if (state.selected) setSelected(state, state.selected)
 
   applyAnimation(state, config)
-
-  if (state.movable.dests) {
-    const rank = state.movable.color === 'white' ? '1' : '8',
-      kingStartPos = ('e' + rank) as cg.Key,
-      dests = state.movable.dests.get(kingStartPos),
-      king = state.pieces.get(kingStartPos)
-    if (!dests || !king || king.role !== 'king') return
-    state.movable.dests.set(
-      kingStartPos,
-      dests.filter(
-        d =>
-          !(d === 'a' + rank && dests.includes(('c' + rank) as cg.Key)) &&
-          !(d === 'h' + rank && dests.includes(('g' + rank) as cg.Key))
-      )
-    )
-  }
 }
 
 function deepMerge(base: any, extend: any): void {

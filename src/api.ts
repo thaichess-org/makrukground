@@ -40,12 +40,6 @@ export interface Api {
   // cancel the current premove, if any
   cancelPremove(): void
 
-  // play the current predrop, if any; returns true if premove was played
-  playPredrop(validate: (drop: cg.Drop) => boolean): boolean
-
-  // cancel the current predrop, if any
-  cancelPredrop(): void
-
   // cancel the current move being made
   cancelMove(): void
 
@@ -121,21 +115,8 @@ export function start(state: State, redrawAll: cg.Redraw): Api {
       return false
     },
 
-    playPredrop(validate): boolean {
-      if (state.predroppable.current) {
-        const result = board.playPredrop(state, validate)
-        state.dom.redraw()
-        return result
-      }
-      return false
-    },
-
     cancelPremove(): void {
       render(board.unsetPremove, state)
-    },
-
-    cancelPredrop(): void {
-      render(board.unsetPredrop, state)
     },
 
     cancelMove(): void {

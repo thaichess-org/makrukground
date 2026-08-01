@@ -3,42 +3,41 @@
   "version": "0.1.1",
   "description": "thaichess.org makruk ui",
   "type": "module",
-  "module": "makrukground.js",
-  "typings": "makrukground.d.ts",
+  "module": "dist/makrukground.js",
+  "typings": "dist/makrukground.d.ts",
   "exports": {
-    ".": "./makrukground.js",
-    "./*": "./*"
+    ".": "./dist/makrukground.js",
+    "./assets/*": "./assets/*",
+    "./*": "./dist/*.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
+    "esbuild": "^0.28",
     "eslint": "^8",
     "prettier": "^2",
-    "rollup": "^2",
-    "rollup-plugin-terser": "^7",
     "tslib": "^2",
-    "typescript": "^4"
+    "typescript": "^5.9"
   },
   "scripts": {
     "prepare": "$npm_execpath run compile",
-    "compile": "tsc --outDir . --sourceMap --declaration",
+    "compile": "tsc --sourceMap --declaration",
+    "bundle": "esbuild src/makrukground.ts --bundle --format=esm --outfile=dist/makrukground.min.js --minify",
     "lint": "eslint src/*.ts",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "dist": "rollup --config"
+    "dist": "$npm_execpath run compile && $npm_execpath run bundle"
   },
   "files": [
-    "/*.js",
-    "/*.d.ts",
-    "/*.js.map",
+    "/dist/*.js",
+    "/dist/*.d.ts",
+    "/dist/*.js.map",
     "/assets/*.css",
-    "/src/*.ts",
-    "!/rollup.config.js"
+    "/src/*.ts"
   ],
   "repository": "https://github.com/thaichess-org/makrukground",
   "keywords": [
@@ -52,7 +51,7 @@
     "ui",
     "typescript"
   ],
-  "author": "Thibault Duplessis (https://github.com/ornicar) & Jonager (https://github.com/jonager), ",
+  "author": "Thibault Duplessis (https://github.com/ornicar) & Jonathan Guerrero (https://github.com/jonager), ",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/thaichess-org/makrukground/issues"

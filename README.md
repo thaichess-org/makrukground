@@ -1,7 +1,7 @@
 # Makrukground
 
-[![Continuous Integration](https://github.com/lichess-org/chessground/workflows/Continuous%20Integration/badge.svg)](https://github.com/lichess-org/chessground/actions?query=workflow%3A%22Continuous+Integration%22)
-[![npm](https://img.shields.io/npm/v/chessground)](https://www.npmjs.com/package/chessground)
+[![Continuous Integration](https://github.com/thaichess-org/makrukground/workflows/Continuous%20Integration/badge.svg)](https://github.com/thaichess-org/makrukground/actions?query=workflow%3A%22Continuous+Integration%22)
+[![npm](https://img.shields.io/npm/v/%40thaichess-org%2Fmakrukground)](https://www.npmjs.com/package/@thaichess-org/makrukground)
 
 ![Makrukground in 2D and 3D](/screenshot/2d-example.png)
 
@@ -49,13 +49,13 @@ Makrukground is designed to fulfill all thaichess.org web and mobile apps needs,
 ## Installation
 
 ```sh
-npm install --save makrukground
+npm install --save @thaichess-org/makrukground
 ```
 
 ### Usage
 
 ```js
-import { Makrukground } from 'makrukground';
+import { Makrukground } from '@thaichess-org/makrukground';
 
 const config = {
   fen: 'rnsmksnr/8/pppppppp/8/8/PPPPPPPP/8/RNSKMSNR w 0 1'
@@ -65,12 +65,11 @@ const ground = Makrukground(document.body, config);
 
 ## Documentation
 
-- [Config types](https://github.com/lichess-org/chessground/tree/master/src/config.ts)
-- [Default config values](https://github.com/lichess-org/chessground/tree/master/src/state.ts)
-- [API type signatures](https://github.com/lichess-org/chessground/tree/master/src/api.ts)
-- [Simple standalone example](https://github.com/lichess-org/chessground/blob/master/demo.html)
-- [Examples repo](https://github.com/lichess-org/chessground-examples/tree/master/src/units)
-- [Base CSS](https://github.com/lichess-org/chessground-examples/blob/master/assets/chessground.css)
+- [Config types](https://github.com/thaichess-org/makrukground/tree/master/src/config.ts)
+- [Default config values](https://github.com/thaichess-org/makrukground/tree/master/src/state.ts)
+- [API type signatures](https://github.com/thaichess-org/makrukground/tree/master/src/api.ts)
+- [Simple standalone example](https://github.com/thaichess-org/makrukground/blob/master/demo.html)
+- [Base CSS](https://github.com/thaichess-org/makrukground/blob/master/assets/makrukground.base.css)
 
 ## Development
 

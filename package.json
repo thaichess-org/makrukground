@@ -1,5 +1,5 @@
 {
-  "name": "makrukground",
+  "name": "@thaichess-org/makrukground",
   "version": "0.1.1",
   "description": "thaichess.org makruk ui",
   "type": "module",
@@ -8,6 +8,9 @@
   "exports": {
     ".": "./makrukground.js",
     "./*": "./*"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {},
   "devDependencies": {

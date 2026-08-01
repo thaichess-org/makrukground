@@ -39,7 +39,10 @@
     "/assets/*.css",
     "/src/*.ts"
   ],
-  "repository": "https://github.com/thaichess-org/makrukground",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thaichess-org/makrukground.git"
+  },
   "keywords": [
     "makruk",
     "thai chess",

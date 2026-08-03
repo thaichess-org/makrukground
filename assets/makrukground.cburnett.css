@@ -1,44 +1,43 @@
 /** Embedded SVGs for all makruk pieces */
 .cg-wrap piece.pawn.white {
-  background-image: url('pieces/wP.svg');
+  background-image: url('pieces/cambodian/wP.svg');
 }
 .cg-wrap piece.bishop.white {
-  background-image: url('pieces/wB.svg');
+  background-image: url('pieces/cambodian/wB.svg');
 }
 .cg-wrap piece.knight.white {
-  background-image: url('pieces/wN.svg');
+  background-image: url('pieces/cambodian/wN.svg');
 }
 .cg-wrap piece.rook.white {
-  background-image: url('pieces/wR.svg');
+  background-image: url('pieces/cambodian/wR.svg');
 }
 .cg-wrap piece.queen.white {
-  background-image: url('pieces/wQ.svg');
+  background-image: url('pieces/cambodian/wQ.svg');
 }
-/* promoted pawn moves identically to the queen (Met); reuses its art as a placeholder */
 .cg-wrap piece.promotedPawn.white {
-  background-image: url('pieces/wQ.svg');
+  background-image: url('pieces/cambodian/wPP.svg');
 }
 .cg-wrap piece.king.white {
-  background-image: url('pieces/wK.svg');
+  background-image: url('pieces/cambodian/wK.svg');
 }
 .cg-wrap piece.pawn.black {
-  background-image: url('pieces/bP.svg');
+  background-image: url('pieces/cambodian/bP.svg');
 }
 .cg-wrap piece.bishop.black {
-  background-image: url('pieces/bB.svg');
+  background-image: url('pieces/cambodian/bB.svg');
 }
 .cg-wrap piece.knight.black {
-  background-image: url('pieces/bN.svg');
+  background-image: url('pieces/cambodian/bN.svg');
 }
 .cg-wrap piece.rook.black {
-  background-image: url('pieces/bR.svg');
+  background-image: url('pieces/cambodian/bR.svg');
 }
 .cg-wrap piece.queen.black {
-  background-image: url('pieces/bQ.svg');
+  background-image: url('pieces/cambodian/bQ.svg');
 }
 .cg-wrap piece.promotedPawn.black {
-  background-image: url('pieces/bQ.svg');
+  background-image: url('pieces/cambodian/bPP.svg');
 }
 .cg-wrap piece.king.black {
-  background-image: url('pieces/bK.svg');
+  background-image: url('pieces/cambodian/bK.svg');
 }

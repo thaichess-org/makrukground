@@ -1,4 +1,4 @@
-import { DrawShape } from './draw'
+import { DrawShape } from './draw.js'
 
 export interface SyncableShape {
   shape: DrawShape
